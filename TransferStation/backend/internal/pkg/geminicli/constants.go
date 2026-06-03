@@ -55,6 +55,7 @@ var (
 	GeminiCLIOAuthClientID string
 
 	// GeminiCLIOAuthClientSecret is the built-in OAuth client secret, configurable via GEMINI_CLI_OAUTH_CLIENT_SECRET.
+	// Must be provided via env var; no fallback default is embedded in source.
 	GeminiCLIOAuthClientSecret string
 )
 
@@ -64,7 +65,4 @@ func init() {
 		GeminiCLIOAuthClientID = "681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com"
 	}
 	GeminiCLIOAuthClientSecret = os.Getenv(GeminiCLIOAuthClientSecretEnv)
-	if GeminiCLIOAuthClientSecret == "" {
-		GeminiCLIOAuthClientSecret = "GOCSPX-REDACTED"
-	}
 }
