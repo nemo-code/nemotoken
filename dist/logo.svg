@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TransferStation">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#14b8a6"/>
+  <path d="M16 18.5h32v7H35.6v20h-7.2v-20H16v-7Z" fill="#fff"/>
+  <path d="M40.5 34.3h7.2l-6 6 6 6h-7.2l-6-6 6-6Z" fill="#dffcf7"/>
+</svg>

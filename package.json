@@ -1,0 +1,17 @@
+{
+  "name": "nemotoken-xnova-static",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "mirror": "node scripts/mirror-xnova.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "preview": "vite preview --host 127.0.0.1",
+    "build": "node scripts/build-static.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.12"
+  },
+  "devDependencies": {}
+}
