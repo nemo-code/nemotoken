@@ -20,3 +20,7 @@ dist/**/*.map
 Thumbs.db
 .idea/
 .vscode/
+
+# PowerShell artifacts
+$null
+.gh-login/
