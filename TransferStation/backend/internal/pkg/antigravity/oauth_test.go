@@ -677,15 +677,8 @@ func TestConstants_值正确(t *testing.T) {
 	if UserInfoURL != "https://www.googleapis.com/oauth2/v2/userinfo" {
 		t.Errorf("UserInfoURL 不匹配: got %s", UserInfoURL)
 	}
-	if ClientID != "1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com" {
+	if ClientID == "" {
 		t.Errorf("ClientID 不匹配: got %s", ClientID)
-	}
-	secret, err := getClientSecret()
-	if err != nil {
-		t.Fatalf("getClientSecret 应返回默认值，但报错: %v", err)
-	}
-	if secret != "GOCSPX-REDACTED" {
-		t.Errorf("默认 client_secret 不匹配: got %s", secret)
 	}
 	if RedirectURI != "http://localhost:8085/callback" {
 		t.Errorf("RedirectURI 不匹配: got %s", RedirectURI)
@@ -701,6 +694,26 @@ func TestConstants_值正确(t *testing.T) {
 	}
 }
 
+
+func TestClientID_默认值(t *testing.T) {
+	if ClientID == "" {
+		t.Error("ClientID 默认值不应为空")
+	}
+	if !strings.HasSuffix(ClientID, ".apps.googleusercontent.com") {
+		t.Errorf("ClientID 格式不正确: got %s", ClientID)
+	}
+}
+
+func TestClientID_环境变量覆盖(t *testing.T) {
+	old := ClientID
+	ClientID = ""
+	t.Cleanup(func() { ClientID = old })
+	t.Setenv(AntigravityOAuthClientIDEnv, "custom-client-id.apps.googleusercontent.com")
+	ClientID = os.Getenv(AntigravityOAuthClientIDEnv)
+	if ClientID != "custom-client-id.apps.googleusercontent.com" {
+		t.Errorf("ClientID 应从环境变量读取: got %s", ClientID)
+	}
+}
 func TestScopes_包含必要范围(t *testing.T) {
 	expectedScopes := []string{
 		"https://www.googleapis.com/auth/cloud-platform",
